@@ -1,0 +1,7 @@
+sudo apt-get update -y
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+sudo newgrp docker
+sudo docker run -d -p 5001:5001 -e MONGODB_URI=${mongodb_conn_string} -e JWT_SECRET="Sarcasm" --name chatapp-backend wasay786/chatapp-backend:latest 

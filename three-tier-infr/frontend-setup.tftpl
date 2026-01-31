@@ -1,0 +1,8 @@
+echo "${backend_private_ip} backend" >> /etc/hosts
+sudo apt-get update -y
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+newgrp docker
+docker run -d -p 80:80 --name chatapp-frontend wasay786/chatapp-frontend:latest 
